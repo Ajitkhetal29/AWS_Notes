@@ -43,3 +43,5 @@ What is CD?
 Automatically deploy application to server after successful CI
 
 CI ensures code is continuously tested and integrated, while CD ensures that validated code is automatically deployed to production
+
+18.17
