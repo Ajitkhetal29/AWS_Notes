@@ -44,4 +44,26 @@ Automatically deploy application to server after successful CI
 
 CI ensures code is continuously tested and integrated, while CD ensures that validated code is automatically deployed to production
 
-18.17
+AWS ->
+
+Linux
+    Created By Linus torvalds
+    Ubuntu , amazon linux are versipn of the linux version. 
+    -> Free and open source operating system
+    -> Multi-user operating system
+    -> Highly Secure 
+    -> Mostly CLI-Based 
+
+Best For -> Server
+        -> Applocation Deployment
+        -> Cloud and devops Infrastructyure
+        -> Container and kuberenet Platfomrs
+
+
+
+
+
+
+
+        
+
