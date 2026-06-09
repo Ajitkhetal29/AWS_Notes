@@ -1,0 +1,260 @@
+Note ->
+
+var, let, const
+Scope
+Hoisting
+Closures
+this keyword
+call, apply, bind
+Promises
+async/await
+Event Loop
+map, filter, reduce
+Prototype and inheritance
+
+JavaScript Foundation 
+
+Var , let, const -
+
+ - this are the keywords use to declare variables.
+ - var was from origin but let and const introduced in ES6
+ - var can be updated and redeclared, let can be updated cant redeclared, const cant be both
+ - var -> function scope, let and const bock scope.
+
+eg --------- 
+
+{
+    var x = 10;
+    let y = 20;
+    const z = 30;
+}
+
+console.log(x); // 10
+console.log(y); // ReferenceError
+console.log(z); // ReferenceError
+
+---------------
+
+Hoisting Diff 
+
+var - var is is hoites and initialized with undefined
+eg - 
+console.log(a);
+var a = 10;
+-> undefined
+
+let and const - because let and const are in the Temporal Dead Zone (TDZ) until initialized
+eg 
+console.log(b);
+let b = 20;
+-> ReferenceError
+
+
+Real-world Recommendation
+
+In production:
+Use const by default.
+Use let when value changes.
+Avoid var.
+
+
+What is block scope?
+- Block scope means variable declared inside a specific block cannot be accessed from outside the block. defined by pair of curly backets {--}
+eg - 
+f (true) {
+    let blockLet = "I am trapped inside!";
+    const blockConst = "Me too!";
+    console.log(blockLet); // Output: I am trapped inside!
+}
+
+// Attempting to access them outside the block throws an error
+console.log(blockLet);   // ReferenceError: blockLet is not defined
+console.log(blockConst); // ReferenceError: blockConst is not defined
+
+
+What is Function scope?
+- Block scope means variable declared inside a specific function cannot be accessed from outside the block. defined by pair of round backets (--)
+eg - function localEnvironment() {
+    var functionScopedVar = "I am trapped inside!";
+    console.log(functionScopedVar); // Works fine
+}
+
+localEnvironment();
+
+// This throws a ReferenceError
+console.log(functionScopedVar); 
+
+
+
+What is Temporal Dead Zone?
+-> Its the time period from start of the block scope until the js engine reaches the variable declaration statemenet. 
+-> The variable exists in the memory but remains uninitiazlied so if we try to acces it before declare statmenet we will get reff err.
+
+Why is const object mutable?
+-> Object is compound data structure , the dont contain the actual data instead they stire the mmory refence, to avoid reasginement , so we can change the object declared with const but not a direct value,
+-> const prevents reassignment of the variable, not modification of the object itself.
+-> Objects are reference types. The variable stores a reference to the memory location where the object is stored, not the actual object.
+eg -
+const user = { name: "Alice", age: 25 };
+
+// This is perfectly legal
+user.age = 26; 
+user.role = "Admin"; 
+
+console.log(user); // { name: "Alice", age: 26, role: "Admin" }
+
+
+What is hoisting? 
+-> Default behaviour of the js to allocate memory space to the variable and function declaration in compilation phase. 
+
+Scope ?
+scope determines the availability and accessibility of the variable in diff parts of the code.
+
+JavaScript has:
+
+Global Scope
+Function Scope
+Block Scope
+
+What is lexical Scoping ?
+-> lexical scoping is created when a function is defined , it consist of fun local variables, parameters and reff to the outer side variables.
+-> bcoz of lexical scoping fun can access the variables from where it is defined and not where it is called. 
+
+
+What is closure ?exectution.
+-> A closure is formed when an inner function retains acess to the varible from outer function even after the out function finish 
+eg 
+function outer (){
+let count = 0
+function inner(){
+count++
+console.log(count)
+}
+return inner
+}
+
+const fn = outer()
+
+fn()
+fn()
+
+Call ->
+- helps to invoke a function immediately and explicitly sets value of this.
+eg
+--
+const user = {
+    name: "Ajit",
+}
+
+function greet(){
+    console.log(this.name)
+}
+
+greet.call(user)
+----------------------
+
+Apply ->
+- apply does the same job like call, iony difference is we pass the arigment as an array 
+eg . 
+
+function introduce(city, age) {
+    console.log(this.name, city, age);
+}
+
+const user = {
+    name: "Ajit"
+};
+
+introduce.apply(user, ["Mumbai", 25]);
+
+
+Bind ->
+- unlike apply and call the bind does not invoke the fun immediately , it returnes the fun whose cotent or this is bound to a specific obect
+we can it later.
+
+eg 
+const user = {
+    name: "Ajit"
+};
+
+function greet() {
+    console.log(this.name);
+}
+
+const fn = greet.bind(user)
+fn()
+
+-------
+const user = {
+    name: "Ajit",
+
+    greet() {
+        console.log(this.name);
+    }
+};
+
+setTimeout(user.greet.bind(user), 1000);
+
+promise ->
+- Promise is an object representing the eventual completion or failure of an asynchronous operation.
+- promise has three states pending, fulfilled, rejected
+
+
+eg -
+const promise = new Promise((resolve, reject) => {
+
+    let success = true;
+
+    if (success)
+        resolve("Success");
+    else
+        reject("Failure");
+
+});
+
+promise.then((result)=>{
+console.log(result)
+}).catch((err)=>{
+console.log(err))};
+
+
+Code execution ->
+call stack -> micr staxck -> call back que
+
+
+
+Call Stack -> 
+ - The  call stack is data structure used by javascript to keep the track of function execution. 
+- works on LIFO principle 
+
+Call Back  ->
+ - The call back is a function that passed as an argument to another function and xeuted later.
+
+eg 
+function greet(callback){
+callback()
+}
+
+greet(() => {
+    console.log("Hello");
+});
+
+
+Call Back Que ->
+- als called as macro stack que.
+- like settimeout , fetch are passed to this que. 
+- it has lower priority than micro stack que
+
+Micro Stack que ->
+- has higher priority
+- promises are passed to this que
+- exxceutes before call back que
+
+Event Loop ->
+- Evenet is mechanism to continuely monitor call stack and when its empty first pass thentask from microstack and the from the call back quw to call stack
+
+
+
+
+
+
