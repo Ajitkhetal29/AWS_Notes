@@ -253,8 +253,58 @@ Micro Stack que ->
 Event Loop ->
 - Evenet is mechanism to continuely monitor call stack and when its empty first pass thentask from microstack and the from the call back quw to call stack
 
+Promise.all() ->
+- Executes all promises concurrently and resolves only if all promises succeed. If any promise fails, the whole Promise.all fails immediately.
+
+Promise.allSetteled() ->
+- Waits for all promises to complete regardless of whether they succeed or fail.
+
+-------------------------------------------------------------------------------------------------------------------
+
+					Node JS
+
+it  is an run time environment for javascript, before node js were able to run in broser onl , node js help us to use it ons erver side as well.
+built on v8 js engine
+helps to execute teh js outside the browser 
+
+V8 engine - 
+- google open source engine
+helps to co,pile js code to mahine code
+
+single / Multi Thread - 
+js is sigle thraded but nodejs is not with the help of libuv it can perform multiple operations at same time.
+
+Libuv -> 
+   - libuv is open source library, helps node js to perform multuple operations cocurrently
 
 
 
+Strams -> Objects allows to process large data in poeces instaed of all data at once.
 
+Types of Strams ->
+Readable -> use to read the data
+writable -> use to write
+Duplex -> can read and write both 
+Transfor, -> Read -> Modify -> write
+
+Events in streams -> 
+On data -> on receving chunk
+On end -> after completion
+On Error -> on any error
+
+
+Pipes -> helps to coonnect two strasm eg writable and readble and manages the flow 
+
+Worer Threads -> the cpu intensive tasks like large loops, imag processing , compression are handled by worker thread so our main thread wont be blocled and hung.
+
+Cluster helps o run the mutiloles process on on mutlupe cpu cores , it helps in scalability.
+---------------------------------------------------------------------------------------------------------
+							
+							Expres
+
+Express is a lightweight and minimal web framework built on top of the node js that simplifies building web applications and rest apis.
+
+Middleware are the functions that executes betn req res cycle and hav ethe acess to req, res, an dnext 
+
+Error-handling middleware provides centralized error management in Express. Whenever next(err) is called, Express skips the remaining middleware and forwards control to the error middleware.
 
